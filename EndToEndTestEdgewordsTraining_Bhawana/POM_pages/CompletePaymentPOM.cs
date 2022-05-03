@@ -89,11 +89,10 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
            string orderNum = driver.FindElement(By.CssSelector(".order > strong")).GetAttribute("innerHTML");
             Console.WriteLine("The order number is: " +orderNum);
-           // ClickOnElement(_btn_MyAcc);
-
-
-           // ClickOnElement(_btn_LogOut);
-           // Console.WriteLine("Logged Out successfully");
+            ClickOnElement(_btn_MyAcc);
+            ClickOnElement(_btn_Orders);  
+            ClickOnElement(_btn_LogOut);
+           Console.WriteLine("Logged Out successfully");
             
 
         }

@@ -42,6 +42,9 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
            StepDefinitions.LogIn login = new StepDefinitions.LogIn();
             login.WhenITypeInValidUsername(); 
             login.WhenITypeInValidPassword();
+            
+
+
 
         }
 
@@ -154,9 +157,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
             ClickOnElement(_btn_Remove1);
             ImpWait05Secs();
             ClickOnElement(_btn_MyAcc);
-
-
-          //  ClickOnElement(_btn_LogOut);  // this is being performed regardless 
+            ClickOnElement(_btn_LogOut);  // this is being performed regardless 
         }
 
 

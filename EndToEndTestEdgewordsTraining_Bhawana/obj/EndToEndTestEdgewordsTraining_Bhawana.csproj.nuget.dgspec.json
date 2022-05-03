@@ -80,10 +80,6 @@
               "target": "Package",
               "version": "[3.9.57, )"
             },
-            "System.Configuration.ConfigurationManager": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
             "nunit": {
               "target": "Package",
               "version": "[3.13.3, )"

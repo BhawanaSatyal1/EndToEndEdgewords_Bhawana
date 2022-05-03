@@ -27,13 +27,14 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
         public void WhenITypeInValidPassword()
         {
             loginPOM.TypeInPassword();
+            loginPOM.ClickOnLogin();
         }
 
         [Then(@"I should be logged in successfully")]
         public void ThenIShouldBeLoggedInSuccessfully()
         {
 
-            loginPOM.ClickOnLogin();
+           
             string logoutButton = driver.FindElement(By.PartialLinkText("Logout")).Text;
             Assert.That(driver.FindElement(By.PartialLinkText("Logout")).Displayed);
 
