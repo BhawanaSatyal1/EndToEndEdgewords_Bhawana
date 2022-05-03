@@ -20,20 +20,21 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
         [Before] // this will run before every test case 
         public static void SetUp()
         {
-            string browserName = Environment.GetEnvironmentVariable("Browser", EnvironmentVariableTarget.Process);
+            string browserName = "Chrome"; 
 
 
 
-            if (browserName == "FireFox") // condition 
+            if (browserName == "Chrome") // condition 
             {
-                driver = new FirefoxDriver(); // if condition is true instantiate FireforDriver driver 
+                // if condition is true instantiate ChromeDriver driver 
+                driver = new ChromeDriver();
 
             }
             else
             {
 
-                driver = new ChromeDriver();// if condition is false instantiate ChromeDriver driver 
-
+                // if condition is false instantiate FireforDriver driver 
+                driver = new FirefoxDriver();
 
             }
 
@@ -52,12 +53,13 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 
             ITakesScreenshot ssdriver = driver as ITakesScreenshot;
 
+            Screenshot screenshot = ssdriver.GetScreenshot();
             //This code block takes a screenshot when a test case fails
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
 
 
-                Screenshot screenshot = ssdriver.GetScreenshot();
+                
                 screenshot.SaveAsFile("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png", ScreenshotImageFormat.Png);// path to a file
                 TestContext.AddTestAttachment("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png");
 
@@ -66,7 +68,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
         [AfterTestRun] // this is executed after every Test Runs 
         public static void TearDown()
         {
-            //  driver.Quit();
+              driver.Quit();
         }
     }
 }

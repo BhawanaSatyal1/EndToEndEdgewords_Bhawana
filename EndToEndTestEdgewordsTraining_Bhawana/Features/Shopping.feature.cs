@@ -150,11 +150,11 @@ testRunner.Then("I log out successfully", ((string)(null)), ((TechTalk.SpecFlow.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("verify billing functionalities")]
-        [NUnit.Framework.CategoryAttribute("billing")]
+        [NUnit.Framework.CategoryAttribute("completeShopping")]
         public void VerifyBillingFunctionalities()
         {
             string[] tagsOfScenario = new string[] {
-                    "billing"};
+                    "completeShopping"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("verify billing functionalities", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 25

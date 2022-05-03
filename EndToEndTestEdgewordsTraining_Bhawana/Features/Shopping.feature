@@ -21,7 +21,7 @@ Then I log out successfully
 
 
 
-@billing 
+@completeShopping  
 Scenario: verify billing functionalities 
 
 Given I am logged in  & have item added to cart 

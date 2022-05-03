@@ -7,7 +7,7 @@ using global::NUnit.Framework;
 using global::TechTalk.SpecFlow;
 using global::System.Runtime.CompilerServices;
 
-[GeneratedCode("SpecFlow", "3.9.69")]
+[GeneratedCode("SpecFlow", "3.9.74")]
 [SetUpFixture]
 public class EndToEndTestEdgewordsTraining_Bhawana_NUnitAssemblyHooks
 {

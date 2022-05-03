@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
 {
-    [Binding]
+    [Binding]// provides binding between step definition and scenario steps 
     public class LogIn : Utilities.Hooks
     {
         POM_pages.LoginPOM loginPOM = new POM_pages.LoginPOM();

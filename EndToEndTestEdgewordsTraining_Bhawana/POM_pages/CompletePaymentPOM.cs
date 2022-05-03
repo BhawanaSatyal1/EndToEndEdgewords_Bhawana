@@ -24,11 +24,13 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         By _btn_PlaceOrder = (By.Id("place_order"));
         By _txt_Billing_Email = (By.Id("billing_email"));
         By _btn_MyAcc = By.LinkText("My account");
-        By _btn_Orders = By.PartialLinkText("Orders"); 
+        By _btn_Orders = By.PartialLinkText("Orders");
         By _btn_LogOut = By.PartialLinkText("Logout");
-        By _check_Payment = By.CssSelector("#payment_method_cheque"); 
-        
-       
+        By _check_Payment = By.CssSelector("#payment_method_cheque");
+        By _txt_Final_OrderNum = By.XPath("//div/table/tbody/tr[1]/td[@data-title='Order']");
+        By _txt_OrderNum = By.CssSelector(".order > strong"); 
+
+
 
 
         // method clicks on checkout button 
@@ -42,7 +44,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         public void userFillsUpBillingInformation()
         {
 
-         
+
             // driver find lists of elements 
             IList<IWebElement> elements = driver.FindElements(By.XPath("//div[@class='woocommerce-billing-fields__field-wrapper']/p/span/input"));
             // for loop used to perform iteration until the condition becomes false  
@@ -60,14 +62,14 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
             TypeText(_txt_Postcode, ReadValuesFromFile("Postcode"));
             TypeText(_txt_PhoneNum, ReadValuesFromFile("PhoneNum"));
             TypeText(_txt_Billing_Email, ReadValuesFromFile("Bil_Email"));
-          
 
-            string checkPayment= driver.FindElement(By.CssSelector("#payment_method_cheque")).GetAttribute("checked");
-           
+
+            string checkPayment = driver.FindElement(By.CssSelector("#payment_method_cheque")).GetAttribute("checked");
+
             if (checkPayment.Equals("true")) // checks for condition 
             {
                 Console.WriteLine("Checkbox Selected"); // if condition is true this will get printed 
-               
+
             }
             else
             {
@@ -82,21 +84,25 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
 
         }
-
+        //after comparing two order numbers this method logs user out of account 
         public void UserCompletesOrderAndReturnsToHomePage()
         {
-
-
-           string orderNum = driver.FindElement(By.CssSelector(".order > strong")).GetAttribute("innerHTML");
-            Console.WriteLine("The order number is: " +orderNum);
+            GetTextFromElement(_txt_OrderNum); 
+            var orderNum1 = Convert.ToDouble(GetTextFromElement(_txt_OrderNum));//converts string to double 
+            Console.WriteLine("The order number is: " + orderNum1);// prints this message 
             ClickOnElement(_btn_MyAcc);
-            ClickOnElement(_btn_Orders);  
+            ClickOnElement(_btn_Orders);
+            GetTextFromElement(_txt_Final_OrderNum);
+            var finalOrdeNum1 = Convert.ToDouble(GetTextFromElement(_txt_Final_OrderNum).Substring(1));// substring match and converts to double 
+            Assert.AreEqual(orderNum1, finalOrdeNum1); // compares two values 
+            Console.WriteLine("The order numbers match");
+            // reusable method used to click on logout button 
             ClickOnElement(_btn_LogOut);
-           Console.WriteLine("Logged Out successfully");
-            
+            Console.WriteLine("Logged Out successfully");
+
 
         }
-        
+
 
 
     }
