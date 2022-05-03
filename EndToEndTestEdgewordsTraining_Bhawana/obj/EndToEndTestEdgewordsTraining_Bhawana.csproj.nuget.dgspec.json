@@ -1,0 +1,112 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\BhawanaSatyal\\Documents\\C#Projects\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\BhawanaSatyal\\Documents\\C#Projects\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\BhawanaSatyal\\Documents\\C#Projects\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana.csproj",
+        "projectName": "EndToEndTestEdgewordsTraining_Bhawana",
+        "projectPath": "C:\\Users\\BhawanaSatyal\\Documents\\C#Projects\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana.csproj",
+        "packagesPath": "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BhawanaSatyal\\Documents\\C#Projects\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\BhawanaSatyal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.1.0, )"
+            },
+            "NUnit.Console": {
+              "target": "Package",
+              "version": "[3.15.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[100.0.4896.6000, )"
+            },
+            "Selenium.WebDriver.GeckoDriver": {
+              "target": "Package",
+              "version": "[0.31.0, )"
+            },
+            "SpecFlow.NUnit": {
+              "target": "Package",
+              "version": "[3.9.69, )"
+            },
+            "SpecFlow.Plus.LivingDocPlugin": {
+              "target": "Package",
+              "version": "[3.9.57, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "nunit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<RunSettings>
+	<!--configuration elements-->
+	
+	
+	<TestRunParameters>
+		
+		<Parameter name ="Username" value="abc@hotmail.com"/>
+		<Parameter name ="Password" value="bhawana1234"/>
+		<Parameter name ="Coupon" value="edgewords"/>
+		<Parameter name ="FirstName" value="Bhawana"/>
+		<Parameter name ="LastName" value="Satyal"/>
+		<Parameter name ="HouseName" value="55 Kings St"/>
+		<Parameter name ="City" value="London"/>
+		<Parameter name ="Postcode" value="NW10 1TT"/>
+		<Parameter name ="PhoneNum" value="0777777777"/>
+		<Parameter name ="Bil_Email" value="xyz@hotmail.com"/>
+		
+		
+		
+		</TestRunParameters>
+	
+	</RunSettings>
