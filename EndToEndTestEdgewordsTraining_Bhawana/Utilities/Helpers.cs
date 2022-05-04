@@ -37,8 +37,6 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
         {
               return TestContext.Parameters[text];
 
-
-
         }
 
         public string GetTextFromElement(By by)

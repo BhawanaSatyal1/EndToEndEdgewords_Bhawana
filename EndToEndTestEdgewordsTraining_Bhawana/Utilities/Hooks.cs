@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 {
-    [Binding]
+    [Binding]// provides binding between step definition and scenario steps 
     public class Hooks
     {
         public static IWebDriver driver ; //declare the webdriver
@@ -46,29 +46,29 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 
 
 
-        [After] // this executes after every test case
+        [AfterScenario] // this executes after every scenario
         public void TakeScreenshot()
         {
             
 
-            ITakesScreenshot ssdriver = driver as ITakesScreenshot;
+            ITakesScreenshot? ssdriver = driver as ITakesScreenshot;
 
-            Screenshot screenshot = ssdriver.GetScreenshot();
+          
             //This code block takes a screenshot when a test case fails
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
 
+                Screenshot screenshot = ssdriver.GetScreenshot();
 
-                
-                screenshot.SaveAsFile("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png", ScreenshotImageFormat.Png);// path to a file
+                screenshot.SaveAsFile("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png", ScreenshotImageFormat.Png);// path to a file to save screenshot 
                 TestContext.AddTestAttachment("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png");
 
             }
         }
-        [AfterTestRun] // this is executed after every Test Runs 
+        [After] // this is executed after every Test Runs 
         public static void TearDown()
-        {
-              driver.Quit();
+        {        
+            driver.Quit();
         }
     }
 }

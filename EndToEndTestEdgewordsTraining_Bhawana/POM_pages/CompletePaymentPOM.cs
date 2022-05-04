@@ -87,13 +87,13 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         //after comparing two order numbers this method logs user out of account 
         public void UserCompletesOrderAndReturnsToHomePage()
         {
-            GetTextFromElement(_txt_OrderNum); 
-            var orderNum1 = Convert.ToDouble(GetTextFromElement(_txt_OrderNum));//converts string to double 
+            var orderNum1 = GetTextFromElement(_txt_OrderNum);
             Console.WriteLine("The order number is: " + orderNum1);// prints this message 
             ClickOnElement(_btn_MyAcc);
             ClickOnElement(_btn_Orders);
             GetTextFromElement(_txt_Final_OrderNum);
-            var finalOrdeNum1 = Convert.ToDouble(GetTextFromElement(_txt_Final_OrderNum).Substring(1));// substring match and converts to double 
+            var finalOrdeNum1 = GetTextFromElement(_txt_Final_OrderNum).Substring(1);// substring match and converts to double 
+            Console.WriteLine("The final order number is: " +finalOrdeNum1);
             Assert.AreEqual(orderNum1, finalOrdeNum1); // compares two values 
             Console.WriteLine("The order numbers match");
             // reusable method used to click on logout button 

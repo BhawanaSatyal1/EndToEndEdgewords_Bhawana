@@ -27,7 +27,6 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         By _btn_Coupon_Calculation = By.CssSelector(".cart-discount.coupon-edgewords > td > .amount.woocommerce-Price-amount");
         By _btn_Subtotal = By.CssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount");
         By _btn_LogOut = By.PartialLinkText("Logout");
-        By _btn_Remove1 = By.CssSelector(".remove");
         By _btn_MyAcc = By.LinkText("My account");
         By _btn_SubTotal = By.CssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount");
         By _txt_Disc_Amt = By.CssSelector(".cart-discount.coupon-edgewords > td");
@@ -138,9 +137,9 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
             try
             {
-                Assert.AreEqual(TotalDisc, disCalc, "Not Equal");
+                Assert.AreEqual(TotalDisc, disCalc, "Not Equal");// try this block 
             }
-            catch (Exception e)
+            catch (Exception e) // catch exception here 
             {
 
                 Console.WriteLine(e);
@@ -153,9 +152,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
         public void UserLogsOut()
         {
-
-            ClickOnElement(_btn_Remove1);
-            ImpWait05Secs();
+       
             ClickOnElement(_btn_MyAcc);
             ClickOnElement(_btn_LogOut);
         }

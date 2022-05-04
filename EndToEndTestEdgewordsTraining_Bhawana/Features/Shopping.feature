@@ -2,7 +2,7 @@
 
 Feature: Complete shopping activities 
 @login 
-Scenario Outline: Login with valid credentials 
+Scenario: Login with valid credentials 
 
 	Given I am on egdewordstraining homepage
     When I type in valid username
