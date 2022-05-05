@@ -23,7 +23,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         public void ClickOnMyAccount()
 
         {
-            ClickOnElement(_popup_Alert);
+            ClickOnElement(_popup_Alert); // dismiss alert 
             ClickOnElement(_btn_MyAccount);
            
         }
@@ -32,8 +32,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         public void TypeInUserName()
         {
 
-            TypeText(_btn_Username, ReadValuesFromFile("Username"));
-            
+            TypeText(_btn_Username, ReadValuesFromFile("Username"));            
           
         }
         //method types in paassword 

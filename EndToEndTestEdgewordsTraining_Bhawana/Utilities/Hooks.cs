@@ -38,28 +38,26 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 
             }
 
-            driver.Manage().Window.Maximize(); 
-            driver.Url = "https://www.edgewordstraining.co.uk/demo-site/";
+            driver.Manage().Window.Maximize();
+            driver.Url =  "https://www.edgewordstraining.co.uk/demo-site/";
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5); //waits for page to load 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
 
 
-        [AfterScenario] // this executes after every scenario
+        [After] // this executes after every testruns 
         public void TakeScreenshot()
         {
             
 
             ITakesScreenshot? ssdriver = driver as ITakesScreenshot;
 
-          
             //This code block takes a screenshot when a test case fails
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
 
                 Screenshot screenshot = ssdriver.GetScreenshot();
-
                 screenshot.SaveAsFile("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png", ScreenshotImageFormat.Png);// path to a file to save screenshot 
                 TestContext.AddTestAttachment("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot.png");
 
@@ -67,8 +65,8 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
         }
         [After] // this is executed after every Test Runs 
         public static void TearDown()
-        {        
-            driver.Quit();
+        {    
+                driver.Quit(); // close browser
         }
     }
 }

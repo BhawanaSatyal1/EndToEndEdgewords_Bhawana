@@ -94,7 +94,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
             GetTextFromElement(_txt_Final_OrderNum);
             var finalOrdeNum1 = GetTextFromElement(_txt_Final_OrderNum).Substring(1);// substring match and converts to double 
             Console.WriteLine("The final order number is: " +finalOrdeNum1);
-            Assert.AreEqual(orderNum1, finalOrdeNum1); // compares two values 
+            Assert.AreEqual(orderNum1, finalOrdeNum1, "Not Equal"); // compares two values 
             Console.WriteLine("The order numbers match");
             // reusable method used to click on logout button 
             ClickOnElement(_btn_LogOut);

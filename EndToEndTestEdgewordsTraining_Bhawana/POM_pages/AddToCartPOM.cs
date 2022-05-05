@@ -40,7 +40,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
             StepDefinitions.LogIn login = new StepDefinitions.LogIn();
             login.WhenITypeInValidUsername();
-            login.WhenITypeInValidPassword();
+            login.WhenITypeInValidPassword(); // types password and clicks on login 
 
 
 
@@ -120,7 +120,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
 
             var TotalDisc = 0.15 * subTotalCalc; //  calculates Total discount 
-            var FinalTotalAmt = (subTotalCalc - disCalc) + (shippingCostCalc);
+            var FinalTotalAmt = (subTotalCalc - disCalc) + (shippingCostCalc);// calculates Final amount including shipping cost 
 
 
             if (TotalDisc == disCalc) // checks for condition 
