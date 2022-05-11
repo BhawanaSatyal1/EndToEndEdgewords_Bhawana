@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
 {
     [Binding]// provides binding between step definition and scenario steps 
-    public class LogIn : Utilities.Hooks
+    public class LogIn 
     {
         POM_pages.LoginPOM loginPOM = new POM_pages.LoginPOM();
 
@@ -34,12 +34,9 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
         [Then(@"I should be logged in successfully")]
         public void ThenIShouldBeLoggedInSuccessfully()
         {
-
-           
-            string logoutButton = driver.FindElement(By.PartialLinkText("Logout")).Text;
-            Assert.That(driver.FindElement(By.PartialLinkText("Logout")).Displayed);
-
-           
+            
+            loginPOM.VerifyUserIsOnLoggedInSuccessfully();
+          
 
         }
 

@@ -12,39 +12,32 @@ using System.Threading.Tasks;
 namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 {
 
-    public class AddToCart : Utilities.Helpers
+    public class AddToCartPOM : Utilities.Helpers
     {
         //action class defined and invoked to handle keyboard and mouse events 
-        Actions actions = new Actions(driver);
+        Actions actions; 
         // Locate element using By class
-        By _btn_Shop = By.LinkText("Shop");
-        By _btn_Home = By.LinkText("Home");
-        By _btn_Cart = By.LinkText("Cart");
-        By _btn_Hoodie = By.XPath("//a[@href='/demo-site/shop/?add-to-cart=32']");
-        By _btn_Viewcart = By.XPath("//a[@title='View cart']");
-        By _btn_Coupon = By.CssSelector("input#coupon_code");
-        By _btn_Apply_Coupon = By.CssSelector("button[name='apply_coupon']");
-        By _btn_Coupon_Calculation = By.CssSelector(".cart-discount.coupon-edgewords > td > .amount.woocommerce-Price-amount");
-        By _btn_Subtotal = By.CssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount");
-        By _btn_LogOut = By.PartialLinkText("Logout");
-        By _btn_MyAcc = By.LinkText("My account");
-        By _btn_SubTotal = By.CssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount");
-        By _txt_Disc_Amt = By.CssSelector(".cart-discount.coupon-edgewords > td");
-        By _txt_Total_Amt = By.CssSelector("strong > .amount.woocommerce-Price-amount");
-        By _txt_Shipping_Cost = By.CssSelector(".shipping > td");
-
+        By BtnShop = By.LinkText("Shop");
+        By BtnHome = By.LinkText("Home");
+        By BtnCart = By.LinkText("Cart");
+        By BtnHoodie = By.XPath("//a[@href='/demo-site/shop/?add-to-cart=32']");
+        By BtnViewcart = By.XPath("//a[@title='View cart']");
+        By BtnCoupon = By.CssSelector("input#coupon_code");
+        By BtnApplyCoupon = By.CssSelector("button[name='apply_coupon']");
+        By BtnSubTotal = By.CssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount");
+        By TxtDiscAmt = By.CssSelector(".cart-discount.coupon-edgewords > td");
+        By TxtTotalAmt = By.CssSelector("strong > .amount.woocommerce-Price-amount");
+        By TxtShippingCost = By.CssSelector(".shipping > td");
+        By BtnCheckout = By.CssSelector(".alt.button.checkout-button.wc-forward");
 
 
         public void UserLogsIn()
         {
-
-            StepDefinitions.LogIn login = new StepDefinitions.LogIn();
-            login.WhenITypeInValidUsername();
-            login.WhenITypeInValidPassword(); // types password and clicks on login 
-
-
-
-
+            LoginPOM loginPOM = new LoginPOM();
+            loginPOM.ClickOnMyAccount();
+            loginPOM.TypeInUserName();
+            loginPOM.TypeInPassword();
+            loginPOM.ClickOnLogin();
         }
 
 
@@ -52,46 +45,42 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         // this method is used to move mouse pointer between tabs 
         public void HoverAroundCatergories()
         {
-            actions.MoveToElement(driver.FindElement(_btn_Home)).Build().Perform();
-
-            actions.MoveToElement(driver.FindElement(_btn_Shop)).Build().Perform();
-            ImpWait05Secs();
-
-            actions.MoveToElement(driver.FindElement(_btn_Cart)).Build().Perform();
-
+            actions = new Actions(driver);
+            actions.MoveToElement(driver.FindElement(BtnHome)).Build().Perform();
+            actions.MoveToElement(driver.FindElement(BtnShop)).Build().Perform();
+            WaitForTimeInSec(3);
+            actions.MoveToElement(driver.FindElement(BtnCart)).Build().Perform();
             Console.WriteLine("Hover Action performed");// system output 
 
         }
 
         public void ClickOnShop()
         {
-            ClickOnElement(_btn_Shop);
+            ClickOnElement(BtnShop);
         }
 
         public void ClickOnHoodieWithPocket()
         {
-            ClickOnElement(_btn_Hoodie);
+            ClickOnElement(BtnHoodie);
 
         }
 
         public void ClickOnViewcartButton()
         {
-            ClickOnElement(_btn_Viewcart);
+            ClickOnElement(BtnViewcart);
         }
         // method applies coupon code 
         public void ApplyCoupon()
         {
 
 
-            ClickOnElement(_btn_Coupon);
+            ClickOnElement(BtnCoupon);
 
-            TypeText(_btn_Coupon, ReadValuesFromFile("Coupon"));
+            TypeText(BtnCoupon, ReadValuesFromFile("Coupon"));
             Console.WriteLine(" the value of coupon is: " + ReadValuesFromFile("Coupon"));
-            ClickOnElement(_btn_Apply_Coupon);
+            ClickOnElement(BtnApplyCoupon);
             Thread.Sleep(3000);
-
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5)); //applied explicit wait 
-            wait.Until(drv => drv.FindElement(By.CssSelector(".alt.button.checkout-button.wc-forward")).Displayed);// waits for condition to be displayed before proceeding with execution 
+            WaitForElementToBeVisible(driver, BtnCheckout, 3);
             Console.WriteLine("Proceed to checkout button present");//console output 
         }
 
@@ -99,24 +88,19 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         public void VerifyDiscountIsAppliedCorrectly()
         {
 
-            GetTextFromElement(_btn_SubTotal); //returns string from element 
-            Console.WriteLine("The SubTotal is : " + GetTextFromElement(_btn_SubTotal));// console output 
+            GetTextFromElement(BtnSubTotal); //returns string from element 
+            Console.WriteLine("The SubTotal is : " + GetTextFromElement(BtnSubTotal));// console output 
+            GetTextFromElement(TxtDiscAmt);//returns string from element 
+            Console.WriteLine("discount amount:" + GetTextFromElement(TxtDiscAmt));// console output
+            GetTextFromElement(TxtTotalAmt);
+            Console.WriteLine("The total amount is:" + GetTextFromElement(TxtTotalAmt));
+            GetTextFromElement(TxtShippingCost);
+            Console.WriteLine("The Shipping cost is: " + GetTextFromElement(TxtShippingCost));
 
-            GetTextFromElement(_txt_Disc_Amt);//returns string from element 
-            Console.WriteLine("discount amount:" + GetTextFromElement(_txt_Disc_Amt));// console output
-
-
-            GetTextFromElement(_txt_Total_Amt);
-            Console.WriteLine("The total amount is:" + GetTextFromElement(_txt_Total_Amt));
-
-
-            GetTextFromElement(_txt_Shipping_Cost);
-            Console.WriteLine("The Shipping cost is: " + GetTextFromElement(_txt_Shipping_Cost));
-
-            var subTotalCalc = Convert.ToDouble(GetTextFromElement(_btn_SubTotal).Substring(1));// converts string to double and substring method returns the part of the string
-            var disCalc = Convert.ToDouble(GetTextFromElement(_txt_Disc_Amt).Substring(2, 4));// converts string to double and substring method returns the part of the string
-            var totalAmtCalc = Convert.ToDouble(GetTextFromElement(_txt_Total_Amt).Substring(1));
-            var shippingCostCalc = double.Parse(GetTextFromElement(_txt_Shipping_Cost).Substring(12, 4));
+            var subTotalCalc = Convert.ToDouble(GetTextFromElement(BtnSubTotal).Substring(1));// converts string to double and substring method returns the part of the string
+            var disCalc = Convert.ToDouble(GetTextFromElement(TxtDiscAmt).Substring(2, 4));// converts string to double and substring method returns the part of the string
+            var totalAmtCalc = Convert.ToDouble(GetTextFromElement(TxtTotalAmt).Substring(1));
+            var shippingCostCalc = double.Parse(GetTextFromElement(TxtShippingCost).Substring(12, 4));
 
 
             var TotalDisc = 0.15 * subTotalCalc; //  calculates Total discount 
@@ -135,27 +119,22 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
             //   Assert.That(disCalc, Is.EqualTo(subTotalCalc).Within(10).Percent);
 
-            try
-            {
-                Assert.AreEqual(TotalDisc, disCalc, "Not Equal");// try this block 
-            }
-            catch (Exception e) // catch exception here 
-            {
+            //try
+            //{
+            //    Assert.AreEqual(TotalDisc, disCalc, "Not Equal");// try this block 
+            //}
+            //catch (Exception e) // catch exception here 
+            //{
 
-                Console.WriteLine(e);
-            }
+            //    Console.WriteLine(e);
+            //}
 
             Assert.AreEqual(totalAmtCalc, FinalTotalAmt, "Not Equal");
 
 
         }
 
-        public void UserLogsOut()
-        {
-       
-            ClickOnElement(_btn_MyAcc);
-            ClickOnElement(_btn_LogOut);
-        }
+
 
 
     }

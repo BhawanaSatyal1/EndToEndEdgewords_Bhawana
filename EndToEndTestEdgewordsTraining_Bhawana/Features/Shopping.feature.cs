@@ -77,11 +77,11 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Login with valid credentials")]
-        [NUnit.Framework.CategoryAttribute("login")]
+        [NUnit.Framework.CategoryAttribute("smoke")]
         public void LoginWithValidCredentials()
         {
             string[] tagsOfScenario = new string[] {
-                    "login"};
+                    "smoke"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login with valid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I am on egdewordstraining homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.When("I type in valid username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I type in valid username", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.And("I type in valid password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -112,11 +112,11 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("verify AddTo Cart Functionalities")]
-        [NUnit.Framework.CategoryAttribute("addToCart")]
+        [NUnit.Framework.CategoryAttribute("sanity")]
         public void VerifyAddToCartFunctionalities()
         {
             string[] tagsOfScenario = new string[] {
-                    "addToCart"};
+                    "sanity"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("verify AddTo Cart Functionalities", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 14
@@ -129,20 +129,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
-testRunner.Given("I am already logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 17
-testRunner.When("I click on Shop Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I am Logged in as registered user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
-testRunner.And("I add Hoddie with Pocket & click view cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I add an item to the cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
-testRunner.And("I  apply discount & The total calculation must be correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 20
-testRunner.Then("I log out successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+ testRunner.Then("I  apply discount & The total calculation must be correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -150,14 +144,14 @@ testRunner.Then("I log out successfully", ((string)(null)), ((TechTalk.SpecFlow.
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("verify billing functionalities")]
-        [NUnit.Framework.CategoryAttribute("completeShopping")]
+        [NUnit.Framework.CategoryAttribute("smoke1")]
         public void VerifyBillingFunctionalities()
         {
             string[] tagsOfScenario = new string[] {
-                    "completeShopping"};
+                    "smoke1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("verify billing functionalities", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 25
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -167,20 +161,41 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 27
-testRunner.Given("I am logged in  & have item added to cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 28
-testRunner.When("I proceed to checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I am logged in  & have item added to cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 29
-testRunner.And("I complete billing details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I proceed to checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 30
-testRunner.And("I place order & order number should be generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "FirstName",
+                            "Bhawana"});
+                table1.AddRow(new string[] {
+                            "LastName",
+                            "Satyal"});
+                table1.AddRow(new string[] {
+                            "HouseName",
+                            "55 Kings St"});
+                table1.AddRow(new string[] {
+                            "City",
+                            "London"});
+                table1.AddRow(new string[] {
+                            "Postcode",
+                            "NW10 1TT"});
+                table1.AddRow(new string[] {
+                            "PhoneNum",
+                            "0777777777"});
+                table1.AddRow(new string[] {
+                            "Bil_Email",
+                            "xyz@hotmail.com"});
 #line 31
-testRunner.Then("I log out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I complete billing details", ((string)(null)), table1, "And ");
+#line hidden
+#line 41
+ testRunner.Then("I place order & order number should be generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

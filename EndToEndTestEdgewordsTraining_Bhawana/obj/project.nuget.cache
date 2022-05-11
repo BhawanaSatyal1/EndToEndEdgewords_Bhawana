@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3OdTm/AACTD4jgu9qWa+mbxXSBgXOZYocuVHkC/jrGJejbQK4BJC0GJBSTVcg2/XdR0IWK22sgtn2iZsIFaK0w==",
+  "dgSpecHash": "cnsrJuS7qIjV+ChPKYEiFe+k5EgYlRR6cnXTAexQH7iAQZUJRefJehqFIvTa+uutvT0bm8+teTZtsjpbiVtiAg==",
   "success": true,
   "projectFilePath": "C:\\Users\\BhawanaSatyal\\Documents\\C#Projects\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana\\EndToEndTestEdgewordsTraining_Bhawana.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\selenium.webdriver\\4.1.1\\selenium.webdriver.4.1.1.nupkg.sha512",
     "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\selenium.webdriver.chromedriver\\101.0.4951.4100\\selenium.webdriver.chromedriver.101.0.4951.4100.nupkg.sha512",
     "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\selenium.webdriver.geckodriver\\0.31.0\\selenium.webdriver.geckodriver.0.31.0.nupkg.sha512",
+    "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\selenium.webdriver.msedgedriver\\100.0.1185.50\\selenium.webdriver.msedgedriver.100.0.1185.50.nupkg.sha512",
     "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\specflow\\3.9.74\\specflow.3.9.74.nupkg.sha512",
     "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\specflow.internal.json\\1.0.8\\specflow.internal.json.1.0.8.nupkg.sha512",
     "C:\\Users\\BhawanaSatyal\\.nuget\\packages\\specflow.nunit\\3.9.74\\specflow.nunit.3.9.74.nupkg.sha512",

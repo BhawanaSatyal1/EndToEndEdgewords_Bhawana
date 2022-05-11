@@ -16,6 +16,7 @@
           "Selenium.WebDriver": "4.1.1",
           "Selenium.WebDriver.ChromeDriver": "101.0.4951.4100",
           "Selenium.WebDriver.GeckoDriver": "0.31.0",
+          "Selenium.WebDriver.MSEdgeDriver": "100.0.1185.50",
           "SpecFlow.NUnit": "3.9.74",
           "SpecFlow.Plus.LivingDocPlugin": "3.9.57",
           "NUnit": "3.13.3"
@@ -462,6 +463,7 @@
       },
       "Selenium.WebDriver.ChromeDriver/101.0.4951.4100": {},
       "Selenium.WebDriver.GeckoDriver/0.31.0": {},
+      "Selenium.WebDriver.MSEdgeDriver/100.0.1185.50": {},
       "SpecFlow/3.9.74": {
         "dependencies": {
           "BoDi": "1.5.0",
@@ -1332,6 +1334,13 @@
       "sha512": "sha512-B9RJ8VrXWpCOpvz//b/I2UdLjVdiP2eDiXdaK6MZJuOGRxsVE8n/JZ7MH1CY2nnXpY4BJDLpWsNg577C7s1aYA==",
       "path": "selenium.webdriver.geckodriver/0.31.0",
       "hashPath": "selenium.webdriver.geckodriver.0.31.0.nupkg.sha512"
+    },
+    "Selenium.WebDriver.MSEdgeDriver/100.0.1185.50": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mZCQmPEsGebLC7MovQNyop9rAP6PYKviDc5sgGoE2IM+tVuLcuk+BWiM4rkAW3fJaWbVBq5OIw7Mg2/ERSjT5A==",
+      "path": "selenium.webdriver.msedgedriver/100.0.1185.50",
+      "hashPath": "selenium.webdriver.msedgedriver.100.0.1185.50.nupkg.sha512"
     },
     "SpecFlow/3.9.74": {
       "type": "package",

@@ -644,6 +644,12 @@
           "build/Selenium.WebDriver.GeckoDriver.targets": {}
         }
       },
+      "Selenium.WebDriver.MSEdgeDriver/100.0.1185.50": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.MSEdgeDriver.targets": {}
+        }
+      },
       "SpecFlow/3.9.74": {
         "type": "package",
         "dependencies": {
@@ -2954,6 +2960,24 @@
         "nupkg-icon.png",
         "selenium.webdriver.geckodriver.0.31.0.nupkg.sha512",
         "selenium.webdriver.geckodriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver.MSEdgeDriver/100.0.1185.50": {
+      "sha512": "mZCQmPEsGebLC7MovQNyop9rAP6PYKviDc5sgGoE2IM+tVuLcuk+BWiM4rkAW3fJaWbVBq5OIw7Mg2/ERSjT5A==",
+      "type": "package",
+      "path": "selenium.webdriver.msedgedriver/100.0.1185.50",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/DefinePropertiesMSEdgeDriver.targets",
+        "build/Selenium.WebDriver.MSEdgeDriver.targets",
+        "driver/linux64/msedgedriver",
+        "driver/mac64/msedgedriver",
+        "driver/win32/msedgedriver.exe",
+        "driver/win64/msedgedriver.exe",
+        "license/license.txt",
+        "selenium.webdriver.msedgedriver.100.0.1185.50.nupkg.sha512",
+        "selenium.webdriver.msedgedriver.nuspec"
       ]
     },
     "SpecFlow/3.9.74": {
@@ -5863,6 +5887,7 @@
       "Selenium.WebDriver >= 4.1.1",
       "Selenium.WebDriver.ChromeDriver >= 101.0.4951.4100",
       "Selenium.WebDriver.GeckoDriver >= 0.31.0",
+      "Selenium.WebDriver.MSEdgeDriver >= 100.0.1185.50",
       "SpecFlow.NUnit >= 3.9.74",
       "SpecFlow.Plus.LivingDocPlugin >= 3.9.57",
       "nunit >= 3.13.3"
@@ -5938,6 +5963,10 @@
           "Selenium.WebDriver.GeckoDriver": {
             "target": "Package",
             "version": "[0.31.0, )"
+          },
+          "Selenium.WebDriver.MSEdgeDriver": {
+            "target": "Package",
+            "version": "[100.0.1185.50, )"
           },
           "SpecFlow.NUnit": {
             "target": "Package",

@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow.Assist;
 
 namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
 {
 
     [Binding] // provides binding between step definition and scenario steps 
-    public class CompletePayment :Utilities.Hooks
+    public class CompletePayment
     {
 
-    
-        AddToCart addToCartStepDef = new AddToCart();
-        POM_pages.CompletePaymentPOM completePaymentPOM = new POM_pages.CompletePaymentPOM();   
+
+        POM_pages.CompletePaymentPOM completePaymentPOM = new POM_pages.CompletePaymentPOM();
+        POM_pages.AddToCartPOM addToCartPOM = new POM_pages.AddToCartPOM();
 
 
         [Given(@"I am logged in  & have item added to cart")]
         public void GivenIAmLoggedInHaveItemAddedToCart()
         {
-          addToCartStepDef.GivenIAmAlreadyLoggedIn();
-          addToCartStepDef.WhenIClickOnShopTab();
-          addToCartStepDef.WhenIAddHoddieWithPocketClickViewCart(); 
 
+            addToCartPOM.UserLogsIn();
+            addToCartPOM.ClickOnShop();
+            addToCartPOM.ClickOnHoodieWithPocket();
+            addToCartPOM.ClickOnViewcartButton();
 
 
         }
@@ -30,28 +32,39 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
         [When(@"I proceed to checkout")]
         public void WhenIProceedToCheckout()
         {
-            completePaymentPOM.userClickOnCheckOutButton();
-             
-            
+            completePaymentPOM.UserClickOnCheckOutButton();
+
+
         }
 
         [When(@"I complete billing details")]
-        public void WhenICompleteBillingDetails()
+        public void WhenICompleteBillingDetails(Table table)
         {
-            completePaymentPOM.userFillsUpBillingInformation();
-        }
+            
+          
+            //POM_pages.CompletePaymentPOM details = table.CreateInstance <POM_pages.CompletePaymentPOM>();
+            Utilities.BillingDetails details = table.CreateInstance<Utilities.BillingDetails>();
+            completePaymentPOM.UserFillsUpBillingInformation(details);
+           
 
-        [When(@"I place order & order number should be generated")]
+
+
+        }
+        //[When(@"I complete billing details")]
+        //public void WhenICompleteBillingDetails()
+        //{
+        //    completePaymentPOM.userFillsUpBillingInformation();
+        //}
+
+        [Then(@"I place order & order number should be generated")]
         public void WhenIPlaceOrderOrderNumberShouldBeGenerated()
         {
             completePaymentPOM.UserClicksOnPlaceOrder();
-        }
-
-        [Then(@"I log out")]
-        public void ThenILogOut()
-        {
             completePaymentPOM.UserCompletesOrderAndReturnsToHomePage();
         }
+
+
+
 
     }
 }

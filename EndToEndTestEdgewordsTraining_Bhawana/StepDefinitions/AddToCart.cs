@@ -9,55 +9,36 @@ using System.Threading.Tasks;
 namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
 {
     [Binding] // provides bindings between step def and scenario steps 
-    public class AddToCart:Utilities.Hooks
+    public class AddToCart //: Utilities.Hooks
     {
-        POM_pages.AddToCart addToCart = new POM_pages.AddToCart();
+        POM_pages.AddToCartPOM addToCart = new POM_pages.AddToCartPOM();
         POM_pages.LoginPOM loginPOM = new POM_pages.LoginPOM();
-        LogIn logInStepDefinitions = new LogIn();
-
-        [Given(@"I am already logged in")]
-        public void GivenIAmAlreadyLoggedIn()
+       
+        [Given(@"I am Logged in as registered user")]
+        public void GivenIAmLoggedInAsRegisteredUser()
         {
-            
-            logInStepDefinitions.GivenIAmOnEgdewordstrainingHomepage();
+        
             addToCart.UserLogsIn(); //Calling method with the help of an object 
         }
-      
-           
 
-        [When(@"I click on Shop Tab")]
-        public void WhenIClickOnShopTab()
+        [When(@"I add an item to the cart")]
+        public void WhenIAddAnItemToTheCart()
         {
-           addToCart.HoverAroundCatergories();
-           addToCart.ClickOnShop(); 
-        }
-
-   
-
-        [When(@"I add Hoddie with Pocket & click view cart")]
-        public void WhenIAddHoddieWithPocketClickViewCart()
-        {
+            addToCart.HoverAroundCatergories();
+            addToCart.ClickOnShop();
             addToCart.ClickOnHoodieWithPocket();
             addToCart.ClickOnViewcartButton();
-            string ProceedTocheckoutButton = driver.FindElement(By.LinkText("Proceed to checkout")).Text;
-            Assert.That(ProceedTocheckoutButton, Does.Contain("Proceed to checkout"), "text not found");
+            
+        }
+       
 
-         }
 
-        
-        [When(@"I  apply discount & The total calculation must be correct")]
-        public void WhenIApplyDiscountTheTotalCalculationMustBeCorrect()
+        [Then(@"I  apply discount & The total calculation must be correct")]
+        public void ThenIApplyDiscountTheTotalCalculationMustBeCorrect()
         {
             addToCart.ApplyCoupon();
             addToCart.VerifyDiscountIsAppliedCorrectly();
         }
-
-        [Then(@"I log out successfully")]
-        public void ThenILogOutSuccessfully()
-        {
-            addToCart.UserLogsOut();
-        }
-
 
     }
 }

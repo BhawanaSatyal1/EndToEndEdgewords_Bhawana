@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
@@ -8,23 +9,28 @@ using System.Threading.Tasks;
 
 namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 {
-    [Binding]
+
     public class LoginPOM : Utilities.Helpers
     {
 
         // Locate element using By class
+        
+        By PopupAlert = By.XPath("//a[@href='#']");
+        By BtnMyAccount = By.LinkText("My account");
+        By BtnUsername = By.Id("username");
+        By BtnPassword = By.Id("password");
+        By BtnLogin = By.CssSelector("button[name='login']");
+        By BtnLogout = By.PartialLinkText("Logout");
 
-        By _popup_Alert = By.XPath("//a[@href='#']");
-        By _btn_MyAccount = By.LinkText("My account");
-        By _btn_Username = By.Id("username");
-        By _btn_Password = By.Id("password");
-        By _btn_Login = By.CssSelector("button[name='login']");
+
+
+
 
         public void ClickOnMyAccount()
 
         {
-            ClickOnElement(_popup_Alert); // dismiss alert 
-            ClickOnElement(_btn_MyAccount);
+            ClickOnElement(PopupAlert); // dismiss alert 
+            ClickOnElement(BtnMyAccount);
            
         }
         
@@ -32,13 +38,13 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         public void TypeInUserName()
         {
 
-            TypeText(_btn_Username, ReadValuesFromFile("Username"));            
+            TypeText(BtnUsername, ReadValuesFromFile("Username"));            
           
         }
         //method types in paassword 
         public void TypeInPassword()
         {
-            TypeText(_btn_Password, ReadValuesFromFile("Password"));
+            TypeText(BtnPassword, ReadValuesFromFile("Password"));
          
 
         }
@@ -46,12 +52,23 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         //method clicks on login 
         public void ClickOnLogin()
         {
-            ClickOnElement(_btn_Login);
-            Console.WriteLine("Login Process Completed");
+            ClickOnElement(BtnLogin);
+           
           
         }
 
+        public void VerifyUserIsOnLoggedInSuccessfully()
+        {
+          
+            Assert.That(GetElement(BtnLogout).Displayed);
+            Console.WriteLine("Login Process Completed");
+        }
+
+       
+
+        }
+
     }
-}
+
 
 
