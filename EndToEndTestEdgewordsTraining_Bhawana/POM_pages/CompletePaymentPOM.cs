@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using EndToEndTestEdgewordsTraining_Bhawana.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
@@ -30,23 +31,24 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         By TxtFinalOrderNum = By.XPath("//div/table/tbody/tr[1]/td[@data-title='Order']");
         By TxtOrderNum = By.CssSelector(".order > strong");
 
-       // public string FirstName; 
+
+        private IWebDriver Driver;
+        public CompletePaymentPOM(IWebDriver driver)
+        {
+            Driver = driver;
+        }
 
 
         // method clicks on checkout button 
         public void UserClickOnCheckOutButton()
         {
-            ClickOnElement(BtnProceed);
-
-
+            ClickOnElement(BtnProceed, Driver);
         }
 
         public void UserFillsUpBillingInformation(Utilities.BillingDetails billingDetails)
         {
-
-
             // driver find lists of elements 
-            IList<IWebElement> elements = driver.FindElements(By.XPath("//div[@class='woocommerce-billing-fields__field-wrapper']/p/span/input"));
+            IList<IWebElement> elements = Driver.FindElements(By.XPath("//div[@class='woocommerce-billing-fields__field-wrapper']/p/span/input"));
             // for loop used to perform iteration until the condition becomes false  
             for (int i = 0; i < elements.Count; i++)
             {
@@ -54,52 +56,48 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
             }
 
-            TypeText(TxtFirstName, billingDetails.FirstName);
-            TypeText(TxtLastName, billingDetails.LastName);
-            TypeText(TxtHouseNumName, billingDetails.HouseName);
-            TypeText(TxtCity, billingDetails.City);
-            TypeText(TxtPostcode, billingDetails.Postcode); 
-            TypeText(TxtPhoneNum,billingDetails.PhoneNum.ToString());
-            TypeText(TxtBillingEmail, billingDetails.Bil_Email); 
-       
-           string checkPayment = driver.FindElement(By.CssSelector("#payment_method_cheque")).GetAttribute("checked");
+            TypeText(TxtFirstName, billingDetails.FirstName, Driver);
+            TypeText(TxtLastName, billingDetails.LastName, Driver);
+            TypeText(TxtHouseNumName, billingDetails.HouseName, Driver);
+            TypeText(TxtCity, billingDetails.City, Driver);
+            TypeText(TxtPostcode, billingDetails.Postcode, Driver);
+            TypeText(TxtPhoneNum, billingDetails.PhoneNum.ToString(), Driver);
+            TypeText(TxtBillingEmail, billingDetails.Bil_Email, Driver);
 
-            if (checkPayment.Equals("true")) // checks for condition 
+            string CheckPayment = Driver.FindElement(By.CssSelector("#payment_method_cheque")).GetAttribute("checked");
+
+            if (CheckPayment.Equals("true")) // checks for condition 
             {
                 Console.WriteLine("Checkbox Selected"); // if condition is true this will get printed 
 
             }
             else
             {
-                ClickOnElement(CheckPayment); // if condition is false method clicks on check payment 
+                ClickOnElement(this.CheckPayment, Driver); // if condition is false method clicks on check payment 
             }
 
         }
         public void UserClicksOnPlaceOrder()
         {
             Thread.Sleep(2000); // this suspends execution for 2 seconds 
-            ClickOnElement((BtnPlaceOrder));
+            ClickOnElement((BtnPlaceOrder), Driver);
 
 
         }
         //after comparing two order numbers this method logs user out of account 
         public void UserCompletesOrderAndReturnsToHomePage()
         {
-            var orderNum1 = GetTextFromElement(TxtOrderNum);
+            var orderNum1 = GetTextFromElement(TxtOrderNum, Driver);
             Console.WriteLine("The order number is: " + orderNum1);// prints this message 
-            ClickOnElement(BtnMyAcc);
-            ClickOnElement(BtnOrders);
-            GetTextFromElement(TxtFinalOrderNum);
-            var finalOrdeNum1 = GetTextFromElement(TxtFinalOrderNum).Substring(1);// substring match and converts to double 
-            Console.WriteLine("The final order number is: " +finalOrdeNum1);
+            ClickOnElement(BtnMyAcc, Driver);
+            ClickOnElement(BtnOrders, Driver);
+            GetTextFromElement(TxtFinalOrderNum, Driver);
+            var finalOrdeNum1 = GetTextFromElement(TxtFinalOrderNum, Driver).Substring(1);// substring match and converts to double 
+            Console.WriteLine("The final order number is: " + finalOrdeNum1);
             Assert.AreEqual(orderNum1, finalOrdeNum1, "Not Equal"); // compares two values 
             Console.WriteLine("The order numbers match");
-           
-
 
         }
-
-
 
     }
 

@@ -12,9 +12,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
     public class LoginPOM : Utilities.Helpers
     {
-
         // Locate element using By class
-        
         By PopupAlert = By.XPath("//a[@href='#']");
         By BtnMyAccount = By.LinkText("My account");
         By BtnUsername = By.Id("username");
@@ -22,53 +20,48 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         By BtnLogin = By.CssSelector("button[name='login']");
         By BtnLogout = By.PartialLinkText("Logout");
 
+        private IWebDriver Driver;
 
+        public LoginPOM(IWebDriver driver)
+        {
 
+            Driver = driver;
+        }
 
-
+        // this method clicks on Myaccount 
         public void ClickOnMyAccount()
 
         {
-            ClickOnElement(PopupAlert); // dismiss alert 
-            ClickOnElement(BtnMyAccount);
-           
+            ClickOnElement(PopupAlert, Driver); // dismiss alert 
+            ClickOnElement(BtnMyAccount, Driver);
+
         }
-        
         // This method types username 
         public void TypeInUserName()
         {
 
-            TypeText(BtnUsername, ReadValuesFromFile("Username"));            
-          
+            TypeText(BtnUsername, ReadValuesFromFile("Username", Driver), Driver);
         }
         //method types in paassword 
         public void TypeInPassword()
         {
-            TypeText(BtnPassword, ReadValuesFromFile("Password"));
-         
-
+            TypeText(BtnPassword, ReadValuesFromFile("Password", Driver), Driver);
         }
 
         //method clicks on login 
         public void ClickOnLogin()
         {
-            ClickOnElement(BtnLogin);
-           
-          
+            ClickOnElement(BtnLogin, Driver);
         }
 
-        public void VerifyUserIsOnLoggedInSuccessfully()
+        public Boolean VerifyUserIsOnLoggedInSuccessfully()
         {
-          
-            Assert.That(GetElement(BtnLogout).Displayed);
-            Console.WriteLine("Login Process Completed");
-        }
-
-       
-
+            return GetElement(BtnLogout, Driver).Displayed;
         }
 
     }
+
+}
 
 
 

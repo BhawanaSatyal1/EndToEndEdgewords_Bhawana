@@ -11,51 +11,48 @@ using System.Threading.Tasks;
 
 namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 {
-    public class Helpers:BasePage
+    public class Helpers
     {
-        
 
         // Reusable method to mimic clicking an element
-        public void ClickOnElement(By by)
+        public static void ClickOnElement(By by, IWebDriver Driver)
         {
-            driver.FindElement(by).Click();
+            Driver.FindElement(by).Click();
         }
 
         // Reusable method to type texts in textbox
-        public void TypeText(By by, String text)
+        public static void TypeText(By by, String text, IWebDriver Driver)
         {
-            driver.FindElement(by).SendKeys(text);
+            Driver.FindElement(by).SendKeys(text);
         }
 
         // Reusable method to direct webdriver to wait for 5 seconds 
-        public void WaitForTimeInSec(int timeoutInSeconds)
+        public static void WaitForTimeInSec(int timeoutInSeconds, IWebDriver Driver)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeoutInSeconds);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeoutInSeconds);
         }
 
         // Reusable method to read  and write using TextContext variables
-        public string ReadValuesFromFile(string text)
+        public static string ReadValuesFromFile(string text, IWebDriver Driver)
 
         {
             return TestContext.Parameters[text];
-
         }
 
-        public string GetTextFromElement(By by)
+        public static string GetTextFromElement(By by, IWebDriver Driver)
         {
-            return driver.FindElement(by).Text;
+            return Driver.FindElement(by).Text;
         }
         // Reusable method for general webdriverwait 
-        public void WaitForElementToBeVisible(IWebDriver driver, By by, int timeoutInSeconds)
+        public static void WaitForElementToBeVisible(IWebDriver driver, By by, int timeoutInSeconds, IWebDriver Driver)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
             wait.Until(drv => drv.FindElement(by).Displayed);
-
         }
 
-        public IWebElement GetElement(By by)
+        public static IWebElement GetElement(By by, IWebDriver Driver)
         {
-            return driver.FindElement(by);
+            return Driver.FindElement(by);
         }
     }
 }

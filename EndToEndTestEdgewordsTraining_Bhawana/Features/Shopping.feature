@@ -13,21 +13,18 @@ Scenario: Login with valid credentials
 
 Scenario: verify AddTo Cart Functionalities
 
-#Given I am already logged in 
+
 	Given I am Logged in as registered user
 	When I add an item to the cart
-#When I click on Shop Tab 
-#And  I add Hoddie with Pocket & click view cart 
 	Then I  apply discount & The total calculation must be correct
 
 
 
 
-@smoke1
+@functional
 Scenario: verify billing functionalities
 	Given I am logged in  & have item added to cart
 	When I proceed to checkout
-#	And I complete billing details 
 	And I complete billing details
 		| Field     | Value           |
 		| FirstName | Bhawana         |

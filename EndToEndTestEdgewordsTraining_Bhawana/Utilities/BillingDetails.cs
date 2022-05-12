@@ -8,7 +8,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 {
     public class BillingDetails
     {
-       public string FirstName { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string HouseName { get; set; }
         public string City { get; set; }

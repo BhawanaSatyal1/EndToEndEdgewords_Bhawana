@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,16 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
     [Binding] // provides binding between step definition and scenario steps 
     public class CompletePayment
     {
+        private Utilities.DriverHelper _driverHelper;
+        POM_pages.CompletePaymentPOM completePaymentPOM;
+        POM_pages.AddToCartPOM addToCartPOM;
+        public CompletePayment(Utilities.DriverHelper driverHelper)
+        {
+            _driverHelper = driverHelper;
+            completePaymentPOM = new POM_pages.CompletePaymentPOM(_driverHelper.Driver);
+            addToCartPOM = new POM_pages.AddToCartPOM(_driverHelper.Driver);
 
-
-        POM_pages.CompletePaymentPOM completePaymentPOM = new POM_pages.CompletePaymentPOM();
-        POM_pages.AddToCartPOM addToCartPOM = new POM_pages.AddToCartPOM();
+        }
 
 
         [Given(@"I am logged in  & have item added to cart")]
@@ -25,36 +32,21 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
             addToCartPOM.ClickOnShop();
             addToCartPOM.ClickOnHoodieWithPocket();
             addToCartPOM.ClickOnViewcartButton();
-
-
         }
 
         [When(@"I proceed to checkout")]
         public void WhenIProceedToCheckout()
         {
             completePaymentPOM.UserClickOnCheckOutButton();
-
-
         }
 
         [When(@"I complete billing details")]
         public void WhenICompleteBillingDetails(Table table)
         {
-            
-          
-            //POM_pages.CompletePaymentPOM details = table.CreateInstance <POM_pages.CompletePaymentPOM>();
             Utilities.BillingDetails details = table.CreateInstance<Utilities.BillingDetails>();
             completePaymentPOM.UserFillsUpBillingInformation(details);
-           
-
-
 
         }
-        //[When(@"I complete billing details")]
-        //public void WhenICompleteBillingDetails()
-        //{
-        //    completePaymentPOM.userFillsUpBillingInformation();
-        //}
 
         [Then(@"I place order & order number should be generated")]
         public void WhenIPlaceOrderOrderNumberShouldBeGenerated()
@@ -62,9 +54,6 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
             completePaymentPOM.UserClicksOnPlaceOrder();
             completePaymentPOM.UserCompletesOrderAndReturnsToHomePage();
         }
-
-
-
 
     }
 }

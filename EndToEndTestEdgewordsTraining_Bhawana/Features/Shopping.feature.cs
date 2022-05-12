@@ -135,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 18
  testRunner.When("I add an item to the cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 19
  testRunner.Then("I  apply discount & The total calculation must be correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -144,14 +144,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("verify billing functionalities")]
-        [NUnit.Framework.CategoryAttribute("smoke1")]
+        [NUnit.Framework.CategoryAttribute("functional")]
         public void VerifyBillingFunctionalities()
         {
             string[] tagsOfScenario = new string[] {
-                    "smoke1"};
+                    "functional"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("verify billing functionalities", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -161,10 +161,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
+#line 26
  testRunner.Given("I am logged in  & have item added to cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 29
+#line 27
  testRunner.When("I proceed to checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -191,10 +191,10 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             "Bil_Email",
                             "xyz@hotmail.com"});
-#line 31
+#line 28
  testRunner.And("I complete billing details", ((string)(null)), table1, "And ");
 #line hidden
-#line 41
+#line 38
  testRunner.Then("I place order & order number should be generated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

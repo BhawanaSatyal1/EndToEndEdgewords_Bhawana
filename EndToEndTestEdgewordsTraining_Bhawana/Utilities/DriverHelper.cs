@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 {
-    public class BasePage
+    public class DriverHelper
     {
-      public static IWebDriver driver;
-     //  public IWebDriver driver;
+     public IWebDriver Driver { get; set; } // delcare driver 
+
+
+
 
     }
 }

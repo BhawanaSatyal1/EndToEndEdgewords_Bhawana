@@ -9,15 +9,21 @@ using System.Threading.Tasks;
 namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
 {
     [Binding] // provides bindings between step def and scenario steps 
-    public class AddToCart //: Utilities.Hooks
+    public class AddToCart
     {
-        POM_pages.AddToCartPOM addToCart = new POM_pages.AddToCartPOM();
-        POM_pages.LoginPOM loginPOM = new POM_pages.LoginPOM();
-       
+
+        private Utilities.DriverHelper _driverHelper;
+        POM_pages.AddToCartPOM addToCart;
+
+        public AddToCart(Utilities.DriverHelper driverHelper)
+        {
+            _driverHelper = driverHelper;
+            addToCart = new POM_pages.AddToCartPOM(_driverHelper.Driver);
+
+        }
         [Given(@"I am Logged in as registered user")]
         public void GivenIAmLoggedInAsRegisteredUser()
         {
-        
             addToCart.UserLogsIn(); //Calling method with the help of an object 
         }
 
@@ -28,10 +34,8 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.StepDefinitions
             addToCart.ClickOnShop();
             addToCart.ClickOnHoodieWithPocket();
             addToCart.ClickOnViewcartButton();
-            
-        }
-       
 
+        }
 
         [Then(@"I  apply discount & The total calculation must be correct")]
         public void ThenIApplyDiscountTheTotalCalculationMustBeCorrect()

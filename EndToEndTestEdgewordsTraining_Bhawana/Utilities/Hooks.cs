@@ -15,8 +15,11 @@ using System.Threading.Tasks;
 namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
 {
     [Binding]// provides binding between step definition and scenario steps 
-    public class Hooks : BasePage
+    public class Hooks
     {
+        private readonly DriverHelper _driverHelper;
+        public Hooks(DriverHelper driverHelper) => _driverHelper = driverHelper;
+
 
         [Before] // this will run before every test case 
         public void SetUp()
@@ -28,72 +31,77 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.Utilities
             if (browserName == "Chrome") // condition 
             {
                 // if condition is true instantiate ChromeDriver driver 
-                driver = new ChromeDriver();
+                _driverHelper.Driver = new ChromeDriver();
 
             }
             // if condition is true instantiate EdgeDriver driver 
             else if (browserName == "Edge")
             {
-                driver = new EdgeDriver();
+                _driverHelper.Driver = new EdgeDriver();
             }
             else
             {
 
-                // if condition is false instantiate FireforDriver driver 
-                driver = new FirefoxDriver();
+                // if condition is false instantiate FirefoDriver driver 
+                _driverHelper.Driver = new FirefoxDriver();
 
             }
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(TestContext.Parameters["Url"]);
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5); //waits for page to load 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            _driverHelper.Driver.Manage().Window.Maximize();
+            _driverHelper.Driver.Navigate().GoToUrl(TestContext.Parameters["Url"]);
+            _driverHelper.Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5); //waits for page to load 
+            _driverHelper.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
 
         }
 
-
-
         [After] // this executes after every testruns 
+        public void TearDown()
+        {
+            TakeScreenshot();
+            EmptyCart();
+            CloseBrowser();
+
+        }
         public void TakeScreenshot()
         {
 
 
-            ITakesScreenshot? ssdriver = driver as ITakesScreenshot;
+            ITakesScreenshot? ssdriver = _driverHelper.Driver as ITakesScreenshot;
 
             //This code block takes a screenshot when a test case fails
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 string dateToday = DateTime.Now.ToString("ddMMyyyyHHmmss");
                 Screenshot screenshot = ssdriver.GetScreenshot();
-                screenshot.SaveAsFile("C:/Users/BhawanaSatyal/DocumentsScreenshot/myscreenshot" + dateToday + ".png", ScreenshotImageFormat.Png);// path to a file to save screenshot 
+                screenshot.SaveAsFile("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot" + dateToday + ".png", ScreenshotImageFormat.Png);// path to a file to save screenshot 
                 TestContext.AddTestAttachment("C:/Users/BhawanaSatyal/Documents/Screenshot/myscreenshot" + dateToday + ".png");
 
             }
         }
-        [After] // this is executed after every Test Runs 
+        // this is executed after every Test Runs 
         public void EmptyCart()
         {
-            string checkCart = driver.FindElement(By.CssSelector("a > .amount.woocommerce-Price-amount")).Text.Substring(1);
+            string checkCart = _driverHelper.Driver.FindElement(By.CssSelector("a > .amount.woocommerce-Price-amount")).Text.Substring(1);
             var convertCheckCart = double.Parse(checkCart);
             Console.WriteLine("The cart value is :" + convertCheckCart);
             if (convertCheckCart > 0.00)
             {
-                driver.FindElement(By.CssSelector("a > .amount.woocommerce-Price-amount")).Click();
-                driver.FindElement(By.CssSelector(".remove")).Click();
+                _driverHelper.Driver.FindElement(By.CssSelector("a > .amount.woocommerce-Price-amount")).Click();
+                _driverHelper.Driver.FindElement(By.CssSelector(".remove")).Click();
             }
             else
             {
                 Console.WriteLine("The cart is empty");
             }
 
-            driver.FindElement(By.LinkText("My account")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
+            _driverHelper.Driver.FindElement(By.LinkText("My account")).Click();
+            _driverHelper.Driver.FindElement(By.PartialLinkText("Logout")).Click();
         }
-        [After]
-        public void TearDown()
+
+        public void CloseBrowser()
         {
-            driver.Close();
-            driver.Quit(); // close browser
+            _driverHelper.Driver.Close();
+            _driverHelper.Driver.Quit(); // close browser
         }
 
     }

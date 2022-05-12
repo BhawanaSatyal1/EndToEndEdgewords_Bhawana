@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using EndToEndTestEdgewordsTraining_Bhawana.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -14,8 +15,7 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
 
     public class AddToCartPOM : Utilities.Helpers
     {
-        //action class defined and invoked to handle keyboard and mouse events 
-        Actions actions; 
+
         // Locate element using By class
         By BtnShop = By.LinkText("Shop");
         By BtnHome = By.LinkText("Home");
@@ -29,58 +29,61 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         By TxtTotalAmt = By.CssSelector("strong > .amount.woocommerce-Price-amount");
         By TxtShippingCost = By.CssSelector(".shipping > td");
         By BtnCheckout = By.CssSelector(".alt.button.checkout-button.wc-forward");
+        //action class defined to handle keyboard and mouse events 
+        Actions Actions;
 
-
+        private IWebDriver Driver;
+        public AddToCartPOM(IWebDriver driver)
+        {
+            Driver = driver;
+        }
         public void UserLogsIn()
         {
-            LoginPOM loginPOM = new LoginPOM();
+            LoginPOM loginPOM = new LoginPOM(Driver);
             loginPOM.ClickOnMyAccount();
             loginPOM.TypeInUserName();
             loginPOM.TypeInPassword();
             loginPOM.ClickOnLogin();
         }
 
-
-
         // this method is used to move mouse pointer between tabs 
         public void HoverAroundCatergories()
         {
-            actions = new Actions(driver);
-            actions.MoveToElement(driver.FindElement(BtnHome)).Build().Perform();
-            actions.MoveToElement(driver.FindElement(BtnShop)).Build().Perform();
-            WaitForTimeInSec(3);
-            actions.MoveToElement(driver.FindElement(BtnCart)).Build().Perform();
+            Actions = new Actions(Driver);
+            Actions.MoveToElement(Driver.FindElement(BtnHome)).Build().Perform();
+            Actions.MoveToElement(Driver.FindElement(BtnShop)).Build().Perform();
+            WaitForTimeInSec(3, Driver);
+            Actions.MoveToElement(Driver.FindElement(BtnCart)).Build().Perform();
             Console.WriteLine("Hover Action performed");// system output 
 
         }
-
+        // this method is used to click on shop 
         public void ClickOnShop()
         {
-            ClickOnElement(BtnShop);
+            ClickOnElement(BtnShop, Driver);
         }
 
         public void ClickOnHoodieWithPocket()
         {
-            ClickOnElement(BtnHoodie);
+            ClickOnElement(BtnHoodie, Driver);
 
         }
 
         public void ClickOnViewcartButton()
         {
-            ClickOnElement(BtnViewcart);
+            ClickOnElement(BtnViewcart, Driver);
         }
         // method applies coupon code 
         public void ApplyCoupon()
         {
 
 
-            ClickOnElement(BtnCoupon);
-
-            TypeText(BtnCoupon, ReadValuesFromFile("Coupon"));
-            Console.WriteLine(" the value of coupon is: " + ReadValuesFromFile("Coupon"));
-            ClickOnElement(BtnApplyCoupon);
-            Thread.Sleep(3000);
-            WaitForElementToBeVisible(driver, BtnCheckout, 3);
+            ClickOnElement(BtnCoupon, Driver);
+            TypeText(BtnCoupon, ReadValuesFromFile("Coupon", Driver), Driver);
+            Console.WriteLine(" the value of coupon is: " + ReadValuesFromFile("Coupon", Driver));
+            ClickOnElement(BtnApplyCoupon, Driver);
+            Thread.Sleep(3000); // pauses execution for 3 seconds 
+            WaitForElementToBeVisible(Driver, BtnCheckout, 3, Driver);
             Console.WriteLine("Proceed to checkout button present");//console output 
         }
 
@@ -88,26 +91,26 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
         public void VerifyDiscountIsAppliedCorrectly()
         {
 
-            GetTextFromElement(BtnSubTotal); //returns string from element 
-            Console.WriteLine("The SubTotal is : " + GetTextFromElement(BtnSubTotal));// console output 
-            GetTextFromElement(TxtDiscAmt);//returns string from element 
-            Console.WriteLine("discount amount:" + GetTextFromElement(TxtDiscAmt));// console output
-            GetTextFromElement(TxtTotalAmt);
-            Console.WriteLine("The total amount is:" + GetTextFromElement(TxtTotalAmt));
-            GetTextFromElement(TxtShippingCost);
-            Console.WriteLine("The Shipping cost is: " + GetTextFromElement(TxtShippingCost));
+            GetTextFromElement(BtnSubTotal, Driver); //returns string from element 
+            Console.WriteLine("The SubTotal is : " + GetTextFromElement(BtnSubTotal, Driver));// console output 
+            GetTextFromElement(TxtDiscAmt, Driver);//returns string from element 
+            Console.WriteLine("discount amount:" + GetTextFromElement(TxtDiscAmt, Driver));// console output
+            GetTextFromElement(TxtTotalAmt, Driver);
+            Console.WriteLine("The total amount is:" + GetTextFromElement(TxtTotalAmt, Driver));
+            GetTextFromElement(TxtShippingCost, Driver);
+            Console.WriteLine("The Shipping cost is: " + GetTextFromElement(TxtShippingCost, Driver));
 
-            var subTotalCalc = Convert.ToDouble(GetTextFromElement(BtnSubTotal).Substring(1));// converts string to double and substring method returns the part of the string
-            var disCalc = Convert.ToDouble(GetTextFromElement(TxtDiscAmt).Substring(2, 4));// converts string to double and substring method returns the part of the string
-            var totalAmtCalc = Convert.ToDouble(GetTextFromElement(TxtTotalAmt).Substring(1));
-            var shippingCostCalc = double.Parse(GetTextFromElement(TxtShippingCost).Substring(12, 4));
-
-
-            var TotalDisc = 0.15 * subTotalCalc; //  calculates Total discount 
-            var FinalTotalAmt = (subTotalCalc - disCalc) + (shippingCostCalc);// calculates Final amount including shipping cost 
+            var SubTotalCalc = Convert.ToDouble(GetTextFromElement(BtnSubTotal, Driver).Substring(1));// converts string to double and substring method returns the part of the string
+            var DisCalc = Convert.ToDouble(GetTextFromElement(TxtDiscAmt, Driver).Substring(2, 4));// converts string to double and substring method returns the part of the string
+            var TotalAmtCalc = Convert.ToDouble(GetTextFromElement(TxtTotalAmt, Driver).Substring(1));
+            var ShippingCostCalc = double.Parse(GetTextFromElement(TxtShippingCost, Driver).Substring(12, 4));
 
 
-            if (TotalDisc == disCalc) // checks for condition 
+            var TotalDisc = 0.15 * SubTotalCalc; //  calculates Total discount 
+            var FinalTotalAmt = (SubTotalCalc - DisCalc) + (ShippingCostCalc);// calculates Final amount including shipping cost 
+
+
+            if (TotalDisc == DisCalc) // checks for condition 
             {
                 Console.WriteLine("Correct discount applied");// this will be printed if condition is true 
             }
@@ -117,25 +120,22 @@ namespace EndToEndTestEdgewordsTraining_Bhawana.POM_pages
                 Console.WriteLine("Discount applied incorrectly");// this will be  an output message if condition is false 
             }
 
-            //   Assert.That(disCalc, Is.EqualTo(subTotalCalc).Within(10).Percent);
+            // Assert.That(disCalc, Is.EqualTo(subTotalCalc).Within(10).Percent);
 
-            //try
-            //{
-            //    Assert.AreEqual(TotalDisc, disCalc, "Not Equal");// try this block 
-            //}
-            //catch (Exception e) // catch exception here 
-            //{
+            try
+            {
+                Assert.AreEqual(TotalDisc, DisCalc, "Not Equal");// try this block 
+            }
+            catch (Exception e) // catch exception here 
+            {
 
-            //    Console.WriteLine(e);
-            //}
+                Console.WriteLine(e);
+            }
 
-            Assert.AreEqual(totalAmtCalc, FinalTotalAmt, "Not Equal");
+            Assert.AreEqual(TotalAmtCalc, FinalTotalAmt, "Not Equal");
 
 
         }
-
-
-
 
     }
 }
